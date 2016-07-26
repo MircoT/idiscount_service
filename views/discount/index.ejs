@@ -3,6 +3,9 @@
     <tr>
       <th>#</th>
       <th>token</th>
+      <th>discount</th>
+      <th>origin</th>
+      <th>target</th>
       <th>activated</th>
       <th>redeemed</th>
       <th>QrCode</th>
@@ -13,6 +16,9 @@
         <tr>
         	<td><%=model.number%></td>
         	<td style="max-width: 200px; overflow-wrap: break-word;"><%=model.token%></td>
+        	<td><%=model.discount%></td>
+        	<td><%=model.origin_shop%></td>
+        	<td><%=model.target_shop%></td>
         	<td><%=model.activated%></td>
         	<td><%=model.redeemed%></td>
         	<td><img src="<%=model.QrCode%>"><img></td>
