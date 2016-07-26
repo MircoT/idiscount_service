@@ -10,8 +10,25 @@
  */
 
 module.exports.bootstrap = function(cb) {
+    var shop = {
+        name: "shop_1",
+        uuid: "e031cced-1ce9-42c6-a936-83c78157d268",
+        major: 4128,
+        minor: 4129
+      };
 
-  // It's very important to trigger this callback method when you are finished
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  cb();
+    Shop.create(shop).exec( function(err, model) {});
+
+    shop = {
+        name: "shop_2",
+        uuid: "e031cced-1ce9-42c6-a936-83c78157d268",
+        major: 21845,
+        minor: 4369
+    };
+
+    Shop.create(shop).exec( function(err, model) {});
+
+    // It's very important to trigger this callback method when you are finished
+    // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
+    cb();
 };
