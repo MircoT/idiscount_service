@@ -31,8 +31,8 @@ module.exports = {
             sails.models.shop.find().exec( (err, shops) => {
                 if (!err) {
                     cur_discount.origin_shop = shops[getRandomIntInclusive(0, shops.length - 1)].name;
-                    cur_discount.origin_shop = shops[getRandomIntInclusive(0, shops.length - 1)].name;
-                    cur_discount.token = jwt.sign(cur_discount, SECRET_KEY)
+                    cur_discount.target_shop = shops[getRandomIntInclusive(0, shops.length - 1)].name;
+                    cur_discount.token = jwt.sign(JSON.stringify(cur_discount), SECRET_KEY)
 
                     QRCode.draw(cur_discount.token, (error,canvas) => {
                         cur_discount.QrCode = canvas.toDataURL();
