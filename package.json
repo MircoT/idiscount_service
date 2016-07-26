@@ -34,6 +34,9 @@
     "type": "git",
     "url": "git://github.com/ocrim/idiscount.git"
   },
+  "engines": {
+    "node": "6.3.0"
+  },
   "author": "ocrim",
   "license": ""
 }
