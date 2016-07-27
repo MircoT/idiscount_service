@@ -20,7 +20,7 @@ function randomDiscount() {
 }
 
 module.exports = {
-    create: function(req, res) {
+    create: (req, res) => {
         if (req.method == "POST") {
 
             let cur_discount = {
@@ -54,8 +54,108 @@ module.exports = {
             return res.view('discount/create');
         }
     },
-    index: function(req, res) {
-        Discount.find().exec( function(err, discounts) {
+    activate: (req, res) => {
+        if (req.method === "POST") {
+            let decoded = "";
+            let beacon = req.body.OBJ.beacon;
+
+            try {
+                decoded = jwt.verify(req.body.OBJ.token, SECRET_KEY);
+            } catch(err) {
+                return res.serverError("Invalid token...");
+            }
+
+            sails.models.shop.findOne({name: decoded.origin_shop}).exec( (err, shop) => {
+                if (!err) {
+                    if (beacon.major === shop.major && beacon.minor === shop.minor) {
+                        Discount.update({number: decoded.number}, {activated: true}).exec((updateErr, updated) => {
+                            if (!updateErr) {
+                                return res.send("ACTIVATED");
+                            }
+                            else {
+                                return res.serverError("Can't activate this discount...");
+                            }
+                        });
+                    }
+                    else {
+                        return res.serverError("Beacon not match...");
+                    }
+                }
+                else {
+                    return res.serverError("Can't find any shop with that name...");
+                }
+            });
+        }
+        else {
+            return res.serverError("Method not allowed...");
+        }
+    },
+    redeem: (req, res) => {
+        if (req.method === "POST") {
+            let decoded = "";
+            let beacon = req.body.OBJ.beacon;
+
+            try {
+                decoded = jwt.verify(req.body.OBJ.token, SECRET_KEY);
+            } catch(err) {
+                return res.serverError("Invalid token");
+            }
+
+            sails.models.shop.findOne({name: decoded.target_shop}).exec( (err, shop) => {
+                if (!err) {
+                    if (beacon.major === shop.major && beacon.minor === shop.minor) {
+                        Discount.findOne({number: decoded.number}).exec((discErr, discount) => {
+                            if (!discErr) {
+                                if (discount.activated && !discount.redeemed) {
+                                    return res.send(discount.QrCode);
+                                }
+                                else {
+                                    return res.serverError("Discount already redeemed...");
+                                }
+                            }
+                            else {
+                                return res.serverError("Can't find the discount...");
+                            }
+                        })
+                    }
+                    else {
+                        return res.serverError("Beacon not match...");
+                    }
+                }
+                else {
+                    return res.serverError("Can't find any shop with that name...");
+                }
+            });
+        }
+        else {
+            return res.serverError("Method not allowed...");
+        }
+    },
+    verifyRedeem: (req, res) => {
+        if (req.method === "POST") {
+            let decoded = "";
+
+            try {
+                decoded = jwt.verify(req.body.OBJ.token, SECRET_KEY);
+            } catch(err) {
+                return res.serverError("Invalid token");
+            }
+
+            Discount.update({number: decoded.number}, {redeemed: true}).exec((updateErr, updated) => {
+                if (!updateErr) {
+                    return res.send("REDEEMED");
+                }
+                else {
+                    return res.serverError("Something went wront on redeeming this discount...");
+                }
+            });
+        }
+        else {
+            return res.serverError("Method not allowed...");
+        }
+    },
+    index: (req, res) => {
+        Discount.find().exec( (err, discounts) => {
             return res.view('discount/index', {'discounts': discounts});
         });
     },
