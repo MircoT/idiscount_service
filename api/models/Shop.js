@@ -15,10 +15,10 @@ module.exports = {
       type: 'string'
     },
     major: {
-      type: 'string'
+      type: 'integer'
     },
     minor: {
-      type: 'string'
+      type: 'integer'
     },
   }
 };

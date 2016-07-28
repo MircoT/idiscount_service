@@ -59,7 +59,7 @@ module.exports = {
             let decoded = "";
             let beacon_major = req.body.major;
             let beacon_minor = req.body.minor
-
+            
             try {
                 decoded = jwt.verify(req.body.token, SECRET_KEY);
             } catch(err) {

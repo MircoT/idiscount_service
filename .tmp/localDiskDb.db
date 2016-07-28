@@ -6,20 +6,20 @@
       {
         "name": "shop_1",
         "uuid": "e031cced-1ce9-42c6-a936-83c78157d268",
-        "major": "4128",
-        "minor": "4129",
-        "createdAt": "2016-07-28T04:10:54.950Z",
-        "updatedAt": "2016-07-28T04:10:54.950Z",
-        "id": 65
+        "major": 4128,
+        "minor": 4129,
+        "createdAt": "2016-07-28T16:36:39.075Z",
+        "updatedAt": "2016-07-28T16:36:39.075Z",
+        "id": 71
       },
       {
         "name": "shop_2",
         "uuid": "e031cced-1ce9-42c6-a936-83c78157d268",
-        "major": "21845",
-        "minor": "4369",
-        "createdAt": "2016-07-28T04:10:54.953Z",
-        "updatedAt": "2016-07-28T04:10:54.953Z",
-        "id": 66
+        "major": 21845,
+        "minor": 4369,
+        "createdAt": "2016-07-28T16:36:39.078Z",
+        "updatedAt": "2016-07-28T16:36:39.078Z",
+        "id": 72
       }
     ]
   },
@@ -81,10 +81,10 @@
         "type": "string"
       },
       "major": {
-        "type": "string"
+        "type": "integer"
       },
       "minor": {
-        "type": "string"
+        "type": "integer"
       },
       "id": {
         "type": "integer",
@@ -106,7 +106,7 @@
     },
     "shops": {},
     "shop": {
-      "id": 66
+      "id": 72
     }
   }
 }
