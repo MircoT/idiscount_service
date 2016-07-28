@@ -103,7 +103,7 @@ module.exports = {
                     else {
                         // Bad Request
                         res.status(400);
-                        return res.send("Beacon not match...");
+                        return res.send("Wrong shop...");
                     }
                 }
                 else {
@@ -160,7 +160,7 @@ module.exports = {
                     else {
                         // Bad Request
                         res.status(400);
-                        return res.send("Beacon not match...");
+                        return res.send("Wrong shop...");
                     }
                 }
                 else {
