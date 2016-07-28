@@ -57,23 +57,36 @@ module.exports = {
     activate: (req, res) => {
         if (req.method === "POST") {
             let decoded = "";
-            let beacon = req.body.OBJ.beacon;
+            let beacon_major = req.body.major;
+            let beacon_minor = req.body.minor
 
             try {
-                decoded = jwt.verify(req.body.OBJ.token, SECRET_KEY);
+                decoded = jwt.verify(req.body.token, SECRET_KEY);
             } catch(err) {
                 return res.serverError("Invalid token...");
             }
 
             sails.models.shop.findOne({name: decoded.origin_shop}).exec( (err, shop) => {
                 if (!err) {
-                    if (beacon.major === shop.major && beacon.minor === shop.minor) {
-                        Discount.update({number: decoded.number}, {activated: true}).exec((updateErr, updated) => {
-                            if (!updateErr) {
-                                return res.send("ACTIVATED");
+                    if (beacon_major === shop.major && beacon_minor === shop.minor) {
+                        Discount.findOne({number: decoded.number}).exec((errOne, discount) => {
+                            if (!errOne) {
+                                if (discount.activated === false) {
+                                    Discount.update({number: decoded.number}, {activated: true}).exec((updateErr, updated) => {
+                                        if (!updateErr) {
+                                            return res.send("ACTIVATED");
+                                        }
+                                        else {
+                                            return res.serverError("Can't activate this discount...");
+                                        }
+                                    });
+                                }
+                                else {
+                                    return res.serverError("Discount already activated...");
+                                }
                             }
                             else {
-                                return res.serverError("Can't activate this discount...");
+                                return res.serverError("Can't find that discount...");
                             }
                         });
                     }
@@ -93,17 +106,18 @@ module.exports = {
     redeem: (req, res) => {
         if (req.method === "POST") {
             let decoded = "";
-            let beacon = req.body.OBJ.beacon;
+            let beacon_major = req.body.major;
+            let beacon_minor = req.body.minor
 
             try {
-                decoded = jwt.verify(req.body.OBJ.token, SECRET_KEY);
+                decoded = jwt.verify(req.body.token, SECRET_KEY);
             } catch(err) {
                 return res.serverError("Invalid token");
             }
 
             sails.models.shop.findOne({name: decoded.target_shop}).exec( (err, shop) => {
                 if (!err) {
-                    if (beacon.major === shop.major && beacon.minor === shop.minor) {
+                    if (beacon_major === shop.major && beacon_minor === shop.minor) {
                         Discount.findOne({number: decoded.number}).exec((discErr, discount) => {
                             if (!discErr) {
                                 if (discount.activated && !discount.redeemed) {
@@ -116,7 +130,7 @@ module.exports = {
                             else {
                                 return res.serverError("Can't find the discount...");
                             }
-                        })
+                        });
                     }
                     else {
                         return res.serverError("Beacon not match...");
@@ -136,17 +150,29 @@ module.exports = {
             let decoded = "";
 
             try {
-                decoded = jwt.verify(req.body.OBJ.token, SECRET_KEY);
+                decoded = jwt.verify(req.body.token, SECRET_KEY);
             } catch(err) {
                 return res.serverError("Invalid token");
             }
 
-            Discount.update({number: decoded.number}, {redeemed: true}).exec((updateErr, updated) => {
-                if (!updateErr) {
-                    return res.send("REDEEMED");
+            Discount.findOne({number: decoded.number}).exec((errOne, discount) => {
+                if (!errOne) {
+                    if (discount.redeemed === false) {
+                        Discount.update({number: decoded.number}, {redeemed: true}).exec((updateErr, updated) => {
+                            if (!updateErr) {
+                                return res.send("REDEEMED");
+                            }
+                            else {
+                                return res.serverError("Something went wront on redeeming this discount...");
+                            }
+                        });
+                    }
+                    else {
+                        return res.serverError("Discount already redeemed...");
+                    }
                 }
                 else {
-                    return res.serverError("Something went wront on redeeming this discount...");
+                    return res.serverError("Can't find that discount...");
                 }
             });
         }
