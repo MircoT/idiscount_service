@@ -46,7 +46,9 @@ module.exports = {
                     });
                 }
                 else {
-                    return res.serverError("Can't find any shop...");
+                    // Bad Request
+                    res.status(400);
+                    return res.send("Can't find any shop...");
                 }
             });
         }
@@ -59,11 +61,13 @@ module.exports = {
             let decoded = "";
             let beacon_major = req.body.major;
             let beacon_minor = req.body.minor
-            
+
             try {
                 decoded = jwt.verify(req.body.token, SECRET_KEY);
             } catch(err) {
-                return res.serverError("Invalid token...");
+                // Bad Request
+                res.status(400);
+                return res.send("Invalid token...");
             }
 
             sails.models.shop.findOne({name: decoded.origin_shop}).exec( (err, shop) => {
@@ -77,30 +81,40 @@ module.exports = {
                                             return res.send("ACTIVATED");
                                         }
                                         else {
-                                            return res.serverError("Can't activate this discount...");
+                                            // Bad Request
+                                            res.status(400);
+                                            return res.send("Can't activate this discount...");
                                         }
                                     });
                                 }
                                 else {
-                                    return res.serverError("Discount already activated...");
+                                    // Bad Request
+                                    res.status(400);
+                                    return res.send("Discount already activated...");
                                 }
                             }
                             else {
-                                return res.serverError("Can't find that discount...");
+                                // Bad Request
+                                res.status(400);
+                                return res.send("Can't find that discount...");
                             }
                         });
                     }
                     else {
-                        return res.serverError("Beacon not match...");
+                        // Bad Request
+                        res.status(400);
+                        return res.send("Beacon not match...");
                     }
                 }
                 else {
-                    return res.serverError("Can't find any shop with that name...");
+                    // Bad Request
+                    res.status(400);
+                    return res.send("Can't find any shop with that name...");
                 }
             });
         }
         else {
-            return res.serverError("Method not allowed...");
+            return res.forbidden("Method not allowed...");
         }
     },
     redeem: (req, res) => {
@@ -112,7 +126,9 @@ module.exports = {
             try {
                 decoded = jwt.verify(req.body.token, SECRET_KEY);
             } catch(err) {
-                return res.serverError("Invalid token");
+                // Bad Request
+                res.status(400);
+                return res.send("Invalid token");
             }
 
             sails.models.shop.findOne({name: decoded.target_shop}).exec( (err, shop) => {
@@ -121,31 +137,41 @@ module.exports = {
                         Discount.findOne({number: decoded.number}).exec((discErr, discount) => {
                             if (!discErr) {
                                 if (!discount.activated) {
-                                    return res.serverError("Discount not activated...");
+                                    // Bad Request
+                                    res.status(400);
+                                    return res.send("Discount not activated...");
                                 }
                                 else if (discount.redeemed) {
-                                    return res.serverError("Discount already redeemed...");
+                                    // Bad Request
+                                    res.status(400);
+                                    return res.send("Discount already redeemed...");
                                 }
                                 else {
                                     return res.send(discount.QrCode);
                                 }
                             }
                             else {
-                                return res.serverError("Can't find the discount...");
+                                // Bad Request
+                                res.status(400);
+                                return res.send("Can't find the discount...");
                             }
                         });
                     }
                     else {
-                        return res.serverError("Beacon not match...");
+                        // Bad Request
+                        res.status(400);
+                        return res.send("Beacon not match...");
                     }
                 }
                 else {
-                    return res.serverError("Can't find any shop with that name...");
+                    // Bad Request
+                    res.status(400);
+                    return res.send("Can't find any shop with that name...");
                 }
             });
         }
         else {
-            return res.serverError("Method not allowed...");
+            return res.forbidden("Method not allowed...");
         }
     },
     verifyRedeem: (req, res) => {
@@ -155,13 +181,17 @@ module.exports = {
             try {
                 decoded = jwt.verify(req.body.token, SECRET_KEY);
             } catch(err) {
-                return res.serverError("Invalid token");
+                // Bad Request
+                res.status(400);
+                return res.send("Invalid token");
             }
 
             Discount.findOne({number: decoded.number}).exec((errOne, discount) => {
                 if (!errOne) {
                     if (discount.activated === false) {
-                        return res.serverError("Discount not activated...");
+                        // Bad Request
+                        res.status(400);
+                        return res.send("Discount not activated...");
                     }
                     else if (discount.redeemed === false) {
                         Discount.update({number: decoded.number}, {redeemed: true}).exec((updateErr, updated) => {
@@ -169,21 +199,27 @@ module.exports = {
                                 return res.send("REDEEMED");
                             }
                             else {
-                                return res.serverError("Something went wront on redeeming this discount...");
+                                // Bad Request
+                                res.status(400);
+                                return res.send("Something went wront on redeeming this discount...");
                             }
                         });
                     }
                     else {
-                        return res.serverError("Discount already redeemed...");
+                        // Bad Request
+                        res.status(400);
+                        return res.send("Discount already redeemed...");
                     }
                 }
                 else {
-                    return res.serverError("Can't find that discount...");
+                    // Bad Request
+                    res.status(400);
+                    return res.send("Can't find that discount...");
                 }
             });
         }
         else {
-            return res.serverError("Method not allowed...");
+            return res.forbidden("Method not allowed...");
         }
     },
     index: (req, res) => {
