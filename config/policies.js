@@ -50,5 +50,15 @@ module.exports.policies = {
 	// }
   ShopController: {
     '*': 'noAccess'
+  },
+
+  DiscountController: {
+    'create': 'isSeller',
+    'verifyRedeem': 'isSeller',
+    'index': 'isSeller'
+  },
+
+  DeviceController: {
+    '*': 'isSeller'
   }
 };

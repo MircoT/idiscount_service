@@ -6,30 +6,40 @@
         "uuid": "15cd29d159c18c3e",
         "activationCode": "123456",
         "activated": false,
-        "createdAt": "2016-07-29T05:56:09.179Z",
-        "updatedAt": "2016-07-29T05:56:09.179Z",
-        "id": 27
+        "createdAt": "2016-07-29T06:24:29.711Z",
+        "updatedAt": "2016-07-29T06:24:29.711Z",
+        "id": 32
       }
     ],
     "discount": [],
+    "seller": [
+      {
+        "username": "test",
+        "passwd": "test",
+        "role": "seller",
+        "createdAt": "2016-07-29T06:24:29.719Z",
+        "updatedAt": "2016-07-29T06:24:29.719Z",
+        "id": 4
+      }
+    ],
     "shop": [
       {
         "name": "shop_1",
         "uuid": "e031cced-1ce9-42c6-a936-83c78157d268",
         "major": 4128,
         "minor": 4129,
-        "createdAt": "2016-07-29T05:56:09.174Z",
-        "updatedAt": "2016-07-29T05:56:09.174Z",
-        "id": 111
+        "createdAt": "2016-07-29T06:24:29.700Z",
+        "updatedAt": "2016-07-29T06:24:29.700Z",
+        "id": 121
       },
       {
         "name": "shop_2",
         "uuid": "e031cced-1ce9-42c6-a936-83c78157d268",
         "major": 21845,
         "minor": 4369,
-        "createdAt": "2016-07-29T05:56:09.178Z",
-        "updatedAt": "2016-07-29T05:56:09.178Z",
-        "id": 112
+        "createdAt": "2016-07-29T06:24:29.702Z",
+        "updatedAt": "2016-07-29T06:24:29.702Z",
+        "id": 122
       }
     ]
   },
@@ -106,6 +116,20 @@
         "type": "datetime"
       }
     },
+    "seller": {
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
     "shop": {
       "name": {
         "type": "string"
@@ -135,14 +159,17 @@
   },
   "counters": {
     "discount": {
-      "id": 8
+      "id": 9
     },
     "shops": {},
     "shop": {
-      "id": 112
+      "id": 122
     },
     "device": {
-      "id": 27
+      "id": 32
+    },
+    "seller": {
+      "id": 4
     }
   }
 }
