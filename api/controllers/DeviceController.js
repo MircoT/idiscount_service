@@ -70,7 +70,8 @@ module.exports = {
                 activationCode: req.body.activationCode, 
                 activated: false})
             .exec( (err, device) => {
-                if (!err) {
+                console.log(err, device)
+                if (!err && device !== undefined) {
                     Device.update(device, {activated: true}).exec((err, device) => {
                         if (!err) {
                             return res.send("ACTIVATED");
@@ -85,7 +86,7 @@ module.exports = {
                 else {
                     // Bad Request
                     res.status(400);
-                    return res.send("Device id or activation code are wrong...");
+                    return res.send("Device id or activation code are wrong or device is already active...");
                 }
             });
         }

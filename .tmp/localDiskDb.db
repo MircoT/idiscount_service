@@ -5,10 +5,10 @@
       {
         "uuid": "15cd29d159c18c3e",
         "activationCode": "123456",
-        "activated": true,
-        "createdAt": "2016-07-29T05:11:33.672Z",
-        "updatedAt": "2016-07-29T05:12:16.916Z",
-        "id": 18
+        "activated": false,
+        "createdAt": "2016-07-29T05:28:43.880Z",
+        "updatedAt": "2016-07-29T05:28:43.880Z",
+        "id": 22
       }
     ],
     "discount": [],
@@ -18,18 +18,18 @@
         "uuid": "e031cced-1ce9-42c6-a936-83c78157d268",
         "major": 4128,
         "minor": 4129,
-        "createdAt": "2016-07-29T05:11:33.665Z",
-        "updatedAt": "2016-07-29T05:11:33.665Z",
-        "id": 93
+        "createdAt": "2016-07-29T05:28:43.875Z",
+        "updatedAt": "2016-07-29T05:28:43.875Z",
+        "id": 101
       },
       {
         "name": "shop_2",
         "uuid": "e031cced-1ce9-42c6-a936-83c78157d268",
         "major": 21845,
         "minor": 4369,
-        "createdAt": "2016-07-29T05:11:33.670Z",
-        "updatedAt": "2016-07-29T05:11:33.670Z",
-        "id": 94
+        "createdAt": "2016-07-29T05:28:43.879Z",
+        "updatedAt": "2016-07-29T05:28:43.879Z",
+        "id": 102
       }
     ]
   },
@@ -139,10 +139,10 @@
     },
     "shops": {},
     "shop": {
-      "id": 94
+      "id": 102
     },
     "device": {
-      "id": 18
+      "id": 22
     }
   }
 }
