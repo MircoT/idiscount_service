@@ -73,10 +73,10 @@ module.exports = {
                 console.log(err, device)
                 if (!err && device !== undefined) {
 
-                    let token = jwt.sign(JSON.stringify({
+                    let token = sails.config.jwt.lib.sign(JSON.stringify({
                         uuid: req.params.id, 
                         activationCode: req.body.activationCode
-                    }), SECRET_KEY)
+                    }), sails.config.jwt.secretKey)
 
                     Device.update(device, {
                         activated: true,

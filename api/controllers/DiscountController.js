@@ -5,11 +5,7 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
-const Shop = require('../models/Shop')
 const QRCode = require('qrcode');
-const jwt = require('jsonwebtoken');
-
-const SECRET_KEY = 'temporarySecretKey';
 
 function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -32,7 +28,7 @@ module.exports = {
                 if (!err) {
                     cur_discount.origin_shop = shops[getRandomIntInclusive(0, shops.length - 1)].name;
                     cur_discount.target_shop = shops[getRandomIntInclusive(0, shops.length - 1)].name;
-                    cur_discount.token = jwt.sign(JSON.stringify(cur_discount), SECRET_KEY)
+                    cur_discount.token = sails.config.jwt.lib.sign(JSON.stringify(cur_discount), sails.config.jwt.secretKey)
 
                     QRCode.draw(cur_discount.token, (error,canvas) => {
                         cur_discount.QrCode = canvas.toDataURL();
@@ -63,7 +59,7 @@ module.exports = {
             let beacon_minor = req.body.minor
 
             try {
-                decoded = jwt.verify(req.body.token, SECRET_KEY);
+                decoded = sails.config.jwt.lib.verify(req.body.token, sails.config.jwt.secretKey);
             } catch(err) {
                 // Bad Request
                 res.status(400);
@@ -124,7 +120,7 @@ module.exports = {
             let beacon_minor = req.body.minor
 
             try {
-                decoded = jwt.verify(req.body.token, SECRET_KEY);
+                decoded = sails.config.jwt.lib.verify(req.body.token, sails.config.jwt.secretKey);
             } catch(err) {
                 // Bad Request
                 res.status(400);
@@ -179,7 +175,7 @@ module.exports = {
             let decoded = "";
 
             try {
-                decoded = jwt.verify(req.body.activation_token, SECRET_KEY);
+                decoded = sails.config.jwt.lib.verify(req.body.activation_token, sails.config.jwt.secretKey);
             } catch(err) {
                 // Bad Request
                 res.status(400);
@@ -187,7 +183,7 @@ module.exports = {
             }
 
             try {
-                decoded = jwt.verify(req.body.token, SECRET_KEY);
+                decoded = sails.config.jwt.lib.verify(req.body.token, sails.config.jwt.secretKey);
             } catch(err) {
                 // Bad Request
                 res.status(400);
