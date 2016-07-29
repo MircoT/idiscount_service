@@ -198,7 +198,7 @@ module.exports = {
                             else if (discount.redeemed === false) {
                                 Discount.update({number: decoded.number}, {redeemed: true}).exec((updateErr, updated) => {
                                     if (!updateErr) {
-                                        return res.send("REDEEMED");
+                                        return res.send(`${decoded.discount}% discount redeemed...`);
                                     }
                                     else {
                                         // Bad Request
