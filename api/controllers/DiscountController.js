@@ -99,7 +99,7 @@ module.exports = {
                     else {
                         // Bad Request
                         res.status(400);
-                        return res.send("Wrong shop...");
+                        return res.send("You're in the wrong shop...");
                     }
                 }
                 else {
@@ -156,7 +156,7 @@ module.exports = {
                     else {
                         // Bad Request
                         res.status(400);
-                        return res.send("Wrong shop...");
+                        return res.send("You're in the wrong shop...");
                     }
                 }
                 else {
