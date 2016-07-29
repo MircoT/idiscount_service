@@ -14,6 +14,9 @@ module.exports = {
 	activationCode: {
 		type: 'string'
 	},
+	token: {
+		type: 'string'
+	},
 	activated: {
 		type: 'boolean'
 	},

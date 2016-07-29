@@ -6,9 +6,9 @@
         "uuid": "15cd29d159c18c3e",
         "activationCode": "123456",
         "activated": false,
-        "createdAt": "2016-07-29T08:10:44.968Z",
-        "updatedAt": "2016-07-29T08:10:44.968Z",
-        "id": 33
+        "createdAt": "2016-07-29T08:30:10.598Z",
+        "updatedAt": "2016-07-29T08:30:10.598Z",
+        "id": 34
       }
     ],
     "discount": [],
@@ -17,9 +17,9 @@
         "username": "test",
         "passwd": "test",
         "role": "seller",
-        "createdAt": "2016-07-29T08:10:44.989Z",
-        "updatedAt": "2016-07-29T08:10:44.989Z",
-        "id": 5
+        "createdAt": "2016-07-29T08:30:10.614Z",
+        "updatedAt": "2016-07-29T08:30:10.614Z",
+        "id": 6
       }
     ],
     "shop": [
@@ -28,18 +28,18 @@
         "uuid": "e031cced-1ce9-42c6-a936-83c78157d268",
         "major": 4128,
         "minor": 4129,
-        "createdAt": "2016-07-29T08:10:44.964Z",
-        "updatedAt": "2016-07-29T08:10:44.964Z",
-        "id": 123
+        "createdAt": "2016-07-29T08:30:10.594Z",
+        "updatedAt": "2016-07-29T08:30:10.594Z",
+        "id": 125
       },
       {
         "name": "shop_2",
         "uuid": "e031cced-1ce9-42c6-a936-83c78157d268",
         "major": 21845,
         "minor": 4369,
-        "createdAt": "2016-07-29T08:10:44.967Z",
-        "updatedAt": "2016-07-29T08:10:44.967Z",
-        "id": 124
+        "createdAt": "2016-07-29T08:30:10.597Z",
+        "updatedAt": "2016-07-29T08:30:10.597Z",
+        "id": 126
       }
     ]
   },
@@ -163,13 +163,13 @@
     },
     "shops": {},
     "shop": {
-      "id": 124
+      "id": 126
     },
     "device": {
-      "id": 33
+      "id": 34
     },
     "seller": {
-      "id": 5
+      "id": 6
     }
   }
 }

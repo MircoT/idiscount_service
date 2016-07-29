@@ -27,7 +27,8 @@ module.exports.bootstrap = function(cb) {
     Device.create({
         uuid: "15cd29d159c18c3e",
         activationCode: "123456",
-        activated: false
+        activated: false,
+        token: ""
     }).exec( function(err, model) {});
 
     Seller.create({
