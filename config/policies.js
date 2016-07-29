@@ -58,6 +58,8 @@ module.exports.policies = {
   },
 
   DeviceController: {
-    '*': 'isSeller'
+    'index': 'isSeller',
+    'add': 'isSeller'
+    'delete': 'isSeller'
   }
 };
