@@ -21,7 +21,7 @@ function randomDiscount() {
 
 module.exports = {
     create: (req, res) => {
-        if (req.method == "POST") {
+        if (req.method === "POST") {
 
             let cur_discount = {
                 number: Date.now(),

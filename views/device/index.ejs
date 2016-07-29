@@ -1,0 +1,33 @@
+<hr>
+<form class="form-inline" style="text-align: center;" action="/device/add" method="POST">
+  <div class="form-group">
+    <label for="deviceID">ID</label>
+    <input type="text" class="form-control" id="deviceID" name="deviceID" placeholder="Insert here the ID of the device"
+      style="min-width: 245px;">
+  </div>
+  <button type="submit" class="btn btn-success">Add</button>
+</form>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th>uuid</th>
+      <th>activation code</th>
+      <th>activated</th>
+      <th>actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% devices.forEach( function(model) { %>
+        <tr>
+        	<td><%=model.uuid%></td>
+        	<td><%=model.activationCode%></td>
+        	<td><%=model.activated%></td>
+          <td>
+            <form class="form-inline" style="text-align: center;" action="/device/delete/<%=model.uuid%>" method="GET">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form></td>
+        </tr>
+    <% }); %>
+  </tbody>
+</table>

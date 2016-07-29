@@ -24,6 +24,12 @@ module.exports.bootstrap = function(cb) {
         minor: 4369
     }).exec( function(err, model) {});
 
+    Device.create({
+        uuid: "15cd29d159c18c3e",
+        activationCode: "123456",
+        activated: false
+    }).exec( function(err, model) {});
+
     // It's very important to trigger this callback method when you are finished
     // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
     cb();
