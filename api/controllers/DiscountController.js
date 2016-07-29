@@ -186,35 +186,44 @@ module.exports = {
                 return res.send("Invalid token");
             }
 
-            Discount.findOne({number: decoded.number}).exec((errOne, discount) => {
-                if (!errOne) {
-                    if (discount.activated === false) {
-                        // Bad Request
-                        res.status(400);
-                        return res.send("Discount not activated...");
-                    }
-                    else if (discount.redeemed === false) {
-                        Discount.update({number: decoded.number}, {redeemed: true}).exec((updateErr, updated) => {
-                            if (!updateErr) {
-                                return res.send("REDEEMED");
+            sails.models.device.findOne({uuid: req.body.uuid}).exec( (errDev, device) => {
+                if (!errDev && device !== undefined && device.activated === true) {
+                    Discount.findOne({number: decoded.number}).exec((errOne, discount) => {
+                        if (!errOne && discount !== undefined) {
+                            if (discount.activated === false) {
+                                // Bad Request
+                                res.status(400);
+                                return res.send("Discount not activated...");
+                            }
+                            else if (discount.redeemed === false) {
+                                Discount.update({number: decoded.number}, {redeemed: true}).exec((updateErr, updated) => {
+                                    if (!updateErr) {
+                                        return res.send("REDEEMED");
+                                    }
+                                    else {
+                                        // Bad Request
+                                        res.status(400);
+                                        return res.send("Something went wront on redeeming this discount...");
+                                    }
+                                });
                             }
                             else {
                                 // Bad Request
                                 res.status(400);
-                                return res.send("Something went wront on redeeming this discount...");
+                                return res.send("Discount already redeemed...");
                             }
-                        });
-                    }
-                    else {
-                        // Bad Request
-                        res.status(400);
-                        return res.send("Discount already redeemed...");
-                    }
+                        }
+                        else {
+                            // Bad Request
+                            res.status(400);
+                            return res.send("Can't find that discount...");
+                        }
+                    });
                 }
                 else {
                     // Bad Request
                     res.status(400);
-                    return res.send("Can't find that discount...");
+                    return res.send("Device not activated or not exists...");
                 }
             });
         }
