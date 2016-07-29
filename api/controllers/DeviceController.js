@@ -65,7 +65,11 @@ module.exports = {
     },
     activate: (req, res) => {
         if (req.method === "POST") {
-            Device.findOne({ uuid: req.params.id, activationCode: req.body.activationCode}).exec( (err, device) => {
+            Device.findOne({ 
+                uuid: req.params.id, 
+                activationCode: req.body.activationCode, 
+                activated: false})
+            .exec( (err, device) => {
                 if (!err) {
                     Device.update(device, {activated: true}).exec((err, device) => {
                         if (!err) {
