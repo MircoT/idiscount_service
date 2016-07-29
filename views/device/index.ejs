@@ -14,6 +14,7 @@
       <th>uuid</th>
       <th>activation code</th>
       <th>activated</th>
+      <th>token</th>
       <th>actions</th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
         	<td><%=model.uuid%></td>
         	<td><%=model.activationCode%></td>
         	<td><%=model.activated%></td>
+          <td class="token"><%=model.token%></td>
           <td>
             <form class="form-inline" style="text-align: center;" action="/device/delete/<%=model.uuid%>" method="GET">
               <button type="submit" class="btn btn-danger">Delete</button>

@@ -179,6 +179,14 @@ module.exports = {
             let decoded = "";
 
             try {
+                decoded = jwt.verify(req.body.activation_token, SECRET_KEY);
+            } catch(err) {
+                // Bad Request
+                res.status(400);
+                return res.send("Invalid device activation token");
+            }
+
+            try {
                 decoded = jwt.verify(req.body.token, SECRET_KEY);
             } catch(err) {
                 // Bad Request

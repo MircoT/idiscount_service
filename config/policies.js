@@ -54,7 +54,6 @@ module.exports.policies = {
 
   DiscountController: {
     'create': 'isSeller',
-    'verifyRedeem': 'isSeller',
     'index': 'isSeller'
   },
 

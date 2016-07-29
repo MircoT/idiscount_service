@@ -72,9 +72,18 @@ module.exports = {
             .exec( (err, device) => {
                 console.log(err, device)
                 if (!err && device !== undefined) {
-                    Device.update(device, {activated: true}).exec((err, device) => {
+
+                    let token = jwt.sign(JSON.stringify({
+                        uuid: req.params.id, 
+                        activationCode: req.body.activationCode
+                    }), SECRET_KEY)
+
+                    Device.update(device, {
+                        activated: true,
+                        token: token
+                    }).exec((err, device) => {
                         if (!err) {
-                            return res.send("ACTIVATED");
+                            return res.send(token);
                         }
                         else {
                             // Bad Request

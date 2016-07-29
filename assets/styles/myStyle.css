@@ -10,3 +10,8 @@
 .login-form {
 	width: 100%;
 }
+
+.token {
+	max-width: 200px;
+	overflow-wrap: break-word;
+}

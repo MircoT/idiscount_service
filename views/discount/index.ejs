@@ -15,7 +15,7 @@
     <% discounts.forEach( function(model) { %>
         <tr>
         	<td><%=model.number%></td>
-        	<td style="max-width: 200px; overflow-wrap: break-word;"><%=model.token%></td>
+        	<td class="token"><%=model.token%></td>
         	<td><%=model.discount%></td>
         	<td><%=model.origin_shop%></td>
         	<td><%=model.target_shop%></td>
