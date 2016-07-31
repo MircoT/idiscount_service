@@ -1,0 +1,161 @@
+{
+  "data": {
+    "device": [
+      {
+        "uuid": "EC0ACC02-C55E-4A4B-BD44-74BDFF7D2DDE",
+        "activationCode": "4242",
+        "activated": false,
+        "token": "",
+        "createdAt": "2016-07-31T04:07:26.586Z",
+        "updatedAt": "2016-07-31T04:07:26.586Z",
+        "id": 1
+      }
+    ],
+    "discount": [],
+    "seller": [
+      {
+        "username": "test",
+        "passwd": "test",
+        "role": "seller",
+        "createdAt": "2016-07-31T04:07:26.598Z",
+        "updatedAt": "2016-07-31T04:07:26.598Z",
+        "id": 1
+      }
+    ],
+    "shop": [
+      {
+        "name": "shop_1",
+        "uuid": "e031cced-1ce9-42c6-a936-83c78157d268",
+        "major": 4128,
+        "minor": 4129,
+        "createdAt": "2016-07-31T04:07:26.569Z",
+        "updatedAt": "2016-07-31T04:07:26.569Z",
+        "id": 1
+      },
+      {
+        "name": "shop_2",
+        "uuid": "e031cced-1ce9-42c6-a936-83c78157d268",
+        "major": 21845,
+        "minor": 4369,
+        "createdAt": "2016-07-31T04:07:26.574Z",
+        "updatedAt": "2016-07-31T04:07:26.574Z",
+        "id": 2
+      }
+    ]
+  },
+  "schema": {
+    "device": {
+      "uuid": {
+        "type": "string"
+      },
+      "activationCode": {
+        "type": "string"
+      },
+      "token": {
+        "type": "string"
+      },
+      "activated": {
+        "type": "boolean"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "discount": {
+      "number": {
+        "type": "string"
+      },
+      "QrCode": {
+        "type": "string"
+      },
+      "token": {
+        "type": "string"
+      },
+      "origin_shop": {
+        "type": "string"
+      },
+      "target_shop": {
+        "type": "string"
+      },
+      "activated": {
+        "type": "boolean"
+      },
+      "redeemed": {
+        "type": "boolean"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "seller": {
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "shop": {
+      "name": {
+        "type": "string"
+      },
+      "uuid": {
+        "type": "string"
+      },
+      "major": {
+        "type": "integer"
+      },
+      "minor": {
+        "type": "integer"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    }
+  },
+  "counters": {
+    "device": {
+      "id": 1
+    },
+    "discount": {},
+    "seller": {
+      "id": 1
+    },
+    "shop": {
+      "id": 2
+    }
+  }
+}
