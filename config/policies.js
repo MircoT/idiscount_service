@@ -61,5 +61,10 @@ module.exports.policies = {
     'index': 'isSeller',
     'add': 'isSeller',
     'delete': 'isSeller'
+  },
+
+  SellerController: {
+    '*': false,
+    'login': true
   }
 };
