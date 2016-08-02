@@ -49,7 +49,7 @@ module.exports.policies = {
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
   ShopController: {
-    '*': 'noAccess'
+    '*': false
   },
 
   DiscountController: {

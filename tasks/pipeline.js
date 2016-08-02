@@ -18,7 +18,7 @@
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
   'styles/**/*.css',
-  'styles/bootstrap.min.css'
+  'styles/bootstrap.min.css'  // Add the bootstrap css
 ];
 
 

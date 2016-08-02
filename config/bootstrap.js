@@ -10,6 +10,7 @@
  */
 
 module.exports.bootstrap = function(cb) {
+    // ----- Insert shops -----
     Shop.create({
         name: "shop_1",
         uuid: "e031cced-1ce9-42c6-a936-83c78157d268",
@@ -24,6 +25,7 @@ module.exports.bootstrap = function(cb) {
         minor: 4369
     }).exec( function(err, model) {});
 
+    // ----- Insert devices -----
     Device.create({
         uuid: "EC0ACC02-C55E-4A4B-BD44-74BDFF7D2DDE",
         activationCode: "4242",
@@ -31,6 +33,7 @@ module.exports.bootstrap = function(cb) {
         token: ""
     }).exec( function(err, model) {});
 
+    // ----- Insert sellers -----
     Seller.create({
         username: 'test',
         passwd: 'test',

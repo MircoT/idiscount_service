@@ -6,7 +6,12 @@
  */
 
 module.exports = {
-	login: function (req, res) {
+    /**
+     * @description Login with a username and password (method: [GET, POST])
+     * @return {string} GET  -> login page
+     *                  POST -> the json of the correct logged in or an error string
+     */
+    login: function (req, res) {
         if (req.method == "GET")
             return res.view('seller/login');
         else if(req.method == "POST"){

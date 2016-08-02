@@ -1,3 +1,6 @@
+/**
+ * This module check if the current session user is a seller.
+ */
 module.exports = function(req, res, next) {
 
   if (req.session.role === 'seller') {

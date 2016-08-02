@@ -1,7 +1,7 @@
 /**
  * Device.js
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @description :: This model represents the devices available with the informations to enable them as verifier.
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 

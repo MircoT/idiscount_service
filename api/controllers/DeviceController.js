@@ -5,16 +5,29 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+/**
+ * Generate a random number from min to max included
+ * @param  {integer} min
+ * @param  {integer} max
+ * @return {integer}
+ */
 function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 module.exports = {
+    /**
+     * @description Visualization of the device list
+     */
     index: (req, res) => {
         Device.find().exec( (err, devices) => {
             return res.view('device/index', {'devices': devices});
         });
     },
+    /**
+     * @description Add a new device (method: [POST])
+     * @return {string} the device webpage by redirect or an error string
+     */
     add: (req, res) => {
         if (req.method === "POST") {
             Device.find({ uuid: req.body.deviceID }).exec( (err, devices) => {
@@ -39,13 +52,16 @@ module.exports = {
                     res.status(400);
                     return res.send("Device already inserted...");
                 }
-            });
-            
+            });  
         }
         else {
             return res.forbidden("Method not allowed...");
         }
     },
+    /**
+     * @description Delete a device (method: [GET])
+     * @return {string} the device webpage by redirect or an error string
+     */
     delete: (req, res) => {
         if (req.method === "GET") {
             Device.destroy({ uuid: req.params.id }).exec((err, device) => {
@@ -63,6 +79,10 @@ module.exports = {
             return res.forbidden("Method not allowed...");
         }
     },
+    /**
+     * @description Activate a device (method: [POST])
+     * @return {string} the token for the device or an error string
+     */
     activate: (req, res) => {
         if (req.method === "POST") {
             Device.findOne({ 
